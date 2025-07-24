@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #fffaf3;
+}
+
+h1 {
+  text-align: center; /* これを追加 */
+  margin-bottom: 30px;
+  color: rgb(95, 50, 18);
+}
+
+.border-radius-link {
+  display: block; /* ブロック要素にして幅と高さを適用できるようにする */
+  width: 50px; /* divから移動 */
+  height: 50px; /* divから移動 */
+  margin: 0 auto 20px; /* 中央寄せと下マージンを追加 */
+  text-decoration: none; /* 下線をなくす */
+  border-radius: 50%; /* 丸くする */
+  background-color: green; /* 背景色を設定 */
+  cursor: pointer; /* カーソルをポインターにする */
+  /* 必要に応じて、中央に何か文字などを表示したい場合はここに追加 */
+  display: flex; /* divの中身を中央に寄せるため */
+  justify-content: center;
+  align-items: center;
+}
+
+/* div.border-radius は背景色とborder-radiusをborder-radius-linkに移したので、削除か調整 */
+.border-radius {
+  /* ここは内容がないので、スタイルはborder-radius-linkに集約 */
+  /* 必要に応じて、中のテキストなどのスタイルを設定 */
+  color: #e94d4d; /* この色はdivの中身がないと見えませんが、もし何か表示するなら必要 */
+}
+img {
+  border-radius: 50%;
+  cursor: grab;
+}
+
+.neko {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 1rem;
+  max-width: 1200px;
+  width: 0 auto;
+  padding: 5rem;
+}
+
+.neko li {
+  position: relative;
+  overflow: hidden;
+  width: calc((100% / 6) - (5 * 1rem / 6)); /* 6列表示 */
+  flex-grow: 1; /* 均等にスペースを埋める */
+}
+
+.neko li:hover {
+  transform: translateY(-5px);
+}
+
+.cats {
+  width: 140px;
+  height: auto; /* 画像のアスペクト比を維持 */
+  display: block; /* 画像の下にできる余白をなくす */
+  object-fit: cover;
+}
+
+.cat-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #ffcbcb;
+  color: rgb(107, 178, 53);
+  border-radius: 15px;
+  padding: 0.5rem;
+  text-align: center;
+  opacity: 0; /* 最初は非表示 */
+  visibility: hidden; /* 最初は非表示 */
+  transition: opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out、visibility 0.3s ease-in-out;
+
+  transform: translateY(100%); /* 最初は下に隠しておく */
+}
+
+/* JavaScriptで追加するクラス */
+.cat-info.show-info {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out,
+    visibility 0s linear 0s; /* 表示時は遅延なし */
+}
+
+/* 800px以下: 横に3つ並べる */
+@media (max-width: 1030px) {
+  .neko li {
+    width: calc((100% / 3) - (2 * 1rem / 3)); /* 3列表示 */
+  }
+}
+
+/* 480px以下: 横に2つ並べる */
+@media (max-width: 700px) {
+  .neko li {
+    width: calc((100% / 2) - (1 * 1rem / 2)); /* 2列表示 */
+  }
+}
+
+/* 320px以下: 横に1つ並べる */
+@media (max-width: 320px) {
+  .neko li {
+    width: 100%; /* 1列表示 */
+  }
+}
